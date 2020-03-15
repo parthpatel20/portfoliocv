@@ -1,5 +1,7 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const JavaScriptObfuscator = require('webpack-obfuscator');
+const { join, resolve } = require('path')
+
 module.exports = (env, argv) => {
     return {
         context: __dirname,
@@ -62,19 +64,22 @@ module.exports = (env, argv) => {
             ]
         },
         devServer: {
-            contentBase: __dirname + "/public",
+            contentBase: resolve(__dirname + "/public"),
             hot: true,
            // port:7557
         },
         resolve: {
-            extensions: ['.js', '.jsx', '.scss']
+            extensions: ['*','.js', '.jsx', '.scss']
         },
         plugins: [
             new HtmlWebPackPlugin(
                 {
-                    template: "./src/index.html",
+                    template: join(__dirname, 'public', 'index.html'),
+                    hash:true,
+                    entryPoint: 'public/index.html',
                     //     // filename: "./index.html",
                     //     // inject: 'body'
+                    
                 }),
                 new JavaScriptObfuscator({
                     rotateUnicodeArray: true
