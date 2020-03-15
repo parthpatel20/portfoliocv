@@ -64,7 +64,7 @@ module.exports = (env, argv) => {
         devServer: {
             contentBase: __dirname + "/public",
             hot: true,
-            port:7557
+           // port:7557
         },
         resolve: {
             extensions: ['.js', '.jsx', '.scss']
